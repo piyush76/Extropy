@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="Extropy" default="all">
+    <!-- Setup a property to let us access the environment -->
+    <property environment="env" />
+
+    <!-- Load common properties from build.properties -->
+    <property file="${basedir}/build.properties" />
+
+    <property name="version" value="${major}.${minor}.${revision}" />
+
+
+    <target name="all" depends="build-makefile, archive" />
+
+
+
+    <!-- ============================================================================================== -->
+    <!-- ====================================== Makefile ============================================== -->
+    <!-- ============================================================================================== -->
+
+    <target name="build-makefile">
+        <exec executable="make">
+            <arg value="VERSION=${version}" />
+            <arg value="BUILDNUMBER=${build.number}" />
+        </exec>
+    </target>
+
+
+    <!-- ============================================================================================== -->
+    <!-- ====================================== ARCHIVE =============================================== -->
+    <!-- ============================================================================================== -->
+
+    <target name="archive" if="dir.archive">
+        <copy todir="${dir.archive}" overwrite="true">
+            <fileset dir="${output.packagedir}"/>
+        </copy>
+    </target>
+
+</project>

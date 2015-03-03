@@ -1,0 +1,9 @@
+#! /bin/bash -x
+rpm -Uvh python*rpm 
+rpm -Uvh runit*rpm 
+rpm -Uvh rpmforge*rpm 
+rpm -Uvh ruby*rpm
+yum install which 
+rpm -Uvh facter*rpm
+rpm -Uvh puppet*rpm 
+cp dist/hannibal /usr/local/bin
